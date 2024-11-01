@@ -99,3 +99,99 @@ class Molecule:
 
 ### Molecule Class in C++
 
+In C++, one would typically keep get and set methods, in contrast to Python's property decorator. 
+
+Maps could be used to store atomic weights and colors, similar to Python dictionaries.
+
+```cpp
+// C++ Molecule Class with std::map for Atomic Weights and Colors
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+
+class Molecule {
+public:
+    // Constructor initializes the atom weights and colors maps
+    Molecule() {
+        // Atomic weights for common atoms
+        atom_weights = {
+            {"H", 1.0},
+            {"O", 16.0},
+            {"N", 14.0},
+            {"C", 12.0}
+        };
+
+        // Colors for atoms (if needed for visualization)
+        atom_colors = {
+            {"H", "white"},
+            {"O", "red"},
+            {"N", "blue"},
+            {"C", "gray"}
+        };
+    }
+
+    // Method to add an atom to the molecule
+    void add_atom(const std::string& atom_type, double x, double y, double z) {
+        atoms.push_back({atom_type, x, y, z});
+    }
+
+    // Method to compute the molecular weight of the molecule
+    double compute_molecular_weight() const {
+        double total_weight = 0.0;
+        for (const auto& atom : atoms) {
+            auto it = atom_weights.find(atom.type);
+            if (it != atom_weights.end()) {
+                total_weight += it->second;  // Add the atom's weight
+            } else {
+                std::cerr << "Unknown atom type: " << atom.type << std::endl;
+            }
+        }
+        return total_weight;
+    }
+
+    // Method to print each atom's details
+    void print_atoms() const {
+        for (const auto& atom : atoms) {
+            std::cout << "Atom: " << atom.type
+                      << " Position: (" << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+        }
+    }
+
+private:
+    // Atom struct to store atom type and coordinates
+    struct Atom {
+        std::string type;
+        double x, y, z;
+    };
+
+    // Vector to hold all atoms in the molecule
+    std::vector<Atom> atoms;
+
+    // Maps to store atomic weights and colors by atom type
+    std::map<std::string, double> atom_weights;
+    std::map<std::string, std::string> atom_colors;
+};
+
+int main() {
+    Molecule molecule;
+
+    // Adding atoms to the molecule
+    molecule.add_atom("H", 0.0, 0.0, 0.0);
+    molecule.add_atom("O", 0.0, 1.0, 0.0);
+    molecule.add_atom("C", 1.0, 0.0, 0.0);
+    molecule.add_atom("N", 1.0, 1.0, 0.0);
+
+    // Calculate and display molecular weight
+    double weight = molecule.compute_molecular_weight();
+    std::cout << "Molecular weight: " << weight << std::endl;
+
+    // Display atoms in the molecule
+    molecule.print_atoms();
+
+    return 0;
+}
+```
+
+Using a std::map for atomic weights (atom_weights) and colors (atom_colors) simplifies the code by storing atom properties in a centralized data structure. This eliminates repetitive conditional statements (like if or switch) and allows for easy updates. For example, adding a new atom type only requires updating the map instead of adding more conditionals.
