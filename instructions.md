@@ -53,14 +53,12 @@ It eliminates redundancy and ensures that changes only need to be made in one pl
 Consider the example below, the file reading should be put into a function
 
 ```python
-# Extract energy from simulationA.txt
 with open("simulationA.txt", "r") as file:
     for line in file:
         if "energy:" in line:
             energy_a = line.split(":")[1].strip()
             print(f"Energy from simulationA: {energy_a}")
 
-# Extract energy from simulationB.txt
 with open("simulationB.txt", "r") as file:
     for line in file:
         if "energy:" in line:
@@ -85,7 +83,7 @@ The code in this module carries out multiple tasks related to a molecule based o
 4. **Consideration on Data Structures**: 
     - How does the use of data structures (like dictionaries vs if-else chains) impact the readability and maintainability of the code? Consider the `if` statements - is there a more "clean" way to do this using a Python data structure that we've learned about?
 
-5. **File Path Construction**: Reflect on how the function constructs the file path from the molecule name. What are the implications in terms of code flexibility and robustness?
+5. **File Path Construction**: Reflect on how the function constructs the file path from the molecule name. What are the implications in terms of code flexibility? What if someone has a file that is in a different location or is named something different?
 
 After you have considered these questions, write an improved module that addresses the single responsibility principle and DRY code. 
 Create a new file for your implementation, keeping the original "bad" version so you can directly compare them.
