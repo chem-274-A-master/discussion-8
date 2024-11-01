@@ -103,7 +103,7 @@ Your task for this part is to evaluate and rewrite this class.
 The use of `get_something` and `set_something` in a Python class is [considered to be an anti-pattern](https://docs.quantifiedcode.com/python-anti-patterns/correctness/implementing_java-style_getters_and_setters.html).
 Identify places where `@property` should be used instead. Make a modified version of the class and demonstrate its use in another Python module.
 
-3. How would this class be written differently in C++? Try rewriting the class in C++ (you won't be able to make a visualization, but try writing the class, calculating the molecular weight, and assigning atom colors)
+3. How would this class be written differently in C++? 
 
 **Report Out** on the shared slides on the approach your group took.
 
