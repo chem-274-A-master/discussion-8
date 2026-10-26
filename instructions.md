@@ -1,4 +1,4 @@
-# Week 11 Discussion - Function and Class Design
+# Week 10 Discussion - Function and Class Design
 
 This discussion covers two programming and software design concepts:
 
